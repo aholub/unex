@@ -9,10 +9,15 @@ Homework:
 	It should look as good as it can, given what we know, using both HTML
 	layout and semantic elements appropriately.
 
+3.  Check your work into your GitHub repository and send me (via a Slack
+	direct message) the Github URL for that repository.
+
+I need access to your github repo before next Wednesday at the absolute
+latest. Send me the URL of your repository. Also, sign up for Slack.
+
+Put off until next week:
+
 	There should be a contact-me form at the bottom of the page, where
 	a potential client can send you their name and contact information.
 	The form should submit to http://holub.com/echo.php (so you can see
 	what information is received by the server).
-
-3.  Check your work into your GitHub repository and send me (via a Slack
-	direct message) the Github URL for that repository.
