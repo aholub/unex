@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+</head>
+<body>
+	<form   id="myform"
+			action="http://holub.com/formProcessor.php"
+			method="post"			(or get)
+	>
+		<textarea rows="4" cols="50">
+			Text
+		</textarea>	
+		<button>Label</button>
+<br><br>
+		<label for="date-input">Please choose date</label>
+		<input type="date" id="date-input"></input>
+
+		<label for="time-input">Please choose time</label>
+		<input type="time" id="time-input"></input>
+
+		<label for="range-input">Please choose range</label>
+		<input type="range" id="range-input"
+				min="1" max="10"></input>
+
+		<label for="search-input">Please choose search</label>
+		<input type="search" id="search-input"
+				placeholder="Enter Search Here">
+
+		<label for="tel-input">Please choose tel</label>
+		<input type="tel" id="tel-input"
+				required></input>
+		<input type="submit">
+
+		<label for="email-input">Please choose email</label>
+		<input type="email" id="email-input"
+				required multiple></input>
+		<input type="submit">
+
+		<input type="text" list="data-list">
+		<datalist id="data-list">
+			<option label="Mr." value="Mister"></option>
+			<option label="Ms." value="Mizz"></option>
+			<option label="Dr." value="Doctor"></option>
+		</datalist>
+
+		<select>
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select>
+
+
+		<input type="color" list="data-list">
+
+		<progress value="5" max="10"></progress>
+		<meter for="meter-data"
+			min="10" max="100"
+			value="50"
+			low="20" high="70" optimum="50">
+		</meter>
+		<!-- other types: month, week, color -->
+	</form>
+
+	<label for="outside-text">Outside text:</label>
+	<input type="text" id="outside-text" form="myForm">
+
+	<video
+	src="myVideoFile.mp4"
+	width="720"
+	height="420"
+	autoplay
+	controls
+	loop
+	poster="splayImage.jpg"
+	preload="auto"
+	>
+		<source src="myFile.mp4"> <!-- ie, safari -->
+		<source src="myFile.webm"> <!-- everything else -->
+	</video>
+
+	<audio></audio> <!-- same attributes as video -->
+</body>
+</html>
