@@ -1,0 +1,18 @@
+Homework:
+
+1.	Create a wireframe for a web site that advertises your own services as a
+	web-site-creation company.
+
+2.  On your local web site, create an index.html page that holds your resume.
+	It must contain a picture of yourself, your contact info (which can be
+	fictional if you like), and your work and education history.
+	It should look as good as it can, given what we know, using both HTML
+	layout and semantic elements appropriately.
+
+	There should be a contact-me form at the bottom of the page, where
+	a potential client can send you their name and contact information.
+	The form should submit to http://holub.com/echo.php (so you can see
+	what information is received by the server).
+
+3.  Check your work into your GitHub repository and send me (via a Slack
+	direct message) the Github URL for that repository.
