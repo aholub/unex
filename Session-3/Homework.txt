@@ -1,0 +1,49 @@
+Add CSS to your resume.
+
+The CSS should be in a separate file from the .html file, and look good :-).
+Among other things, it should use color for emphasis, bearing in mind
+the principles of Contrast and Consistency we discussed in Session 1.
+
+The document should use the "Ek Mukta" font throughout, installed
+dynamically from fonts.google.com. Font sizes should scale to be
+readable on the device you're using
+
+The resume should have a picture in it if it doesn't already.
+
+The picture should be in the upper right corner of the general-information
+paragraph of your resume when at full screen resolution or when printing.
+You may make no assumptions about screen resolution or page width width
+when you do the positioning.
+
+|Heading 
+|text text text +-------------+
+|text text text |   picture   |
+|text text text |   picture   |
+|text text text |   picture   |
+|text text text |   picture   |
+|text text text |   picture   |
+|text text text +-------------+
+|text text text text text text
+|text text text text text text
+|text text text text text text
+|text text text text text text
+
+When viewed at cell-phone width, the picture should
+be centered and above the text
+
+|Heading 
+|    +-------------+
+|    |   picture   |
+|    |   picture   |
+|    |   picture   |
+|    |   picture   |
+|    |   picture   |
+|    +-------------+
+|text text text text text
+|text text text text text
+|text text text text text
+|text text text text text
+
+
+Somewhere in your document, I want a "bulleted list" implemented without
+using <ul>, <ol>, or <li> elements. The "bullet" should be any arbitrary image.

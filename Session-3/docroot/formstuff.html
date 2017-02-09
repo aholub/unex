@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Page</title>
+	</head>
+	<body style="margin-left: 1.5in;" >
+
+		<form id="myForm"
+			  action="http://holub.com/echo.php"
+			  method="get">
+
+			<input type="text" list="data-list" name="title">
+			<datalist id="data-list">
+				<option label="Mr." value="Mister"></option>
+				<option label="Ms." value="Mizz"></option>
+				<option label="Ds." value="Doctor"></option>
+			</datalist>
+
+			<select>
+				<option label="Mr." value="Mister"></option>
+				<option label="Ms." value="Mizz"></option>
+				<option label="Ds." value="Doctor"></option>
+			</select>
+
+
+			<label    for="myInputText">Text</label>
+			<textArea  id="myInputText" rows="4" cols="50" name="textarea">
+				Hello
+			</textArea>
+
+			<label for="myTime">Enter a time</label>
+			<input type="date" id="MyTime"></input>
+			<br>
+			<label for="myColor">Enter a time</label>
+			<input id="myColor" type="color"></input>
+			<br>
+			<label for="myEmail">Enter an email</label>
+			<input id="myEmail" type="email"></input>
+
+			<input type="submit" value="Press Me"></input>
+		</form>
+	</body>
+</html>
