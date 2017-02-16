@@ -1,0 +1,139 @@
+(Set up MySql---Mamp already did that, as will your ISP)
+
+Get Wordpress: https://wordpress.org/download/
+	Put it into a docroot directory
+
+The 5-minute install (https://codex.wordpress.org/Installing_WordPress):
+
+	Create a database using phpMyAdmin (in Mamp or directly): 
+
+		In Mamp regular: http://localhost:8888/phpMyAdmin/
+		In Mamp pro, use the console
+
+		Database:	wordpress
+		Collation:	utf8mb4_general_ci
+
+		User: 		wpadmin
+		Password:	wppass
+		Grant all "global privileges" to this user
+	
+
+	Run the install script:
+		http://localhost/wp-admin/install.php
+
+	If that doesn't work,
+		Rename wp-config-sample.php wp-config.php
+		Edit as appropriate
+		Run the install script from http://localhost/wp-admin/install.php
+
+Back up your install
+	check the docroot into git
+	mysqldump --add-drop-table -h localhost -u adminUser  \
+					-padminPassword wordpress | bzip2 -c > databaseBackup.zip
+
+Restore
+	clone or pull the git repo
+	bunzip2 -c databaseBackup.zip | \
+					mysql -h localhost -u adminUser -padminPassword wordpress
+
+You can also backup and restore using phpMyAdmin's export and import features
+
+Select theme
+	Themes control the look and feel of the menu, sidebar,
+	and general page layout. Most themes also come with a default,
+	good looking, "landing page."
+
+	I'm using StudioPress.com  AltitudePro on my site at present
+	BeaverBuilder also has a simple theme
+
+	You get what you pay for: ***AVOID*** http://themeforest.net
+
+Create a child theme 
+	In depth article: https://goo.gl/D2aKpG)
+	Official WordPress docs: https://codex.wordpress.org/Child_Themes
+
+	1. Create a folder in wp-content/themes whose name is your theme name
+			(e.g. mytheme-child)
+	2. In that folder, create a style.css with the following comment in it:
+
+		/*
+		Theme Name: MyTheme Child
+		Template: folderNameOfParentTheme
+
+		---------- Everything below this line is optional:
+		Description: Twenty Fifteen Child Theme
+		Author: John Doe
+		Version: 1.0.0
+
+		Theme URI: http://example.com/twenty-fifteen-child/
+		Author URI: http://example.com
+		License: GNU General Public License v2 or later
+		License URI: http://www.gnu.org/licenses/gpl-2.0.html
+		Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+		Text Domain: mytheme-child
+		*/
+
+	3. In that folder, create a functions.php file that looks like this:
+
+			<?php
+			function my_theme_enqueue_styles() {
+
+				// You could put 
+				//		@import url("../twentyfifteen/style.css");
+				// into your child-theme css file instead of doing the
+				// following, but that's way less efficient
+
+					// eg. 'twentyfifteen-style' for the Twenty Fifteen theme.
+				$parent_style = 'parent-style'; 
+
+				wp_enqueue_style( $parent_style,
+						get_template_directory_uri() . '/style.css' );
+
+				// If you have a additional child style sheets
+				// (other than style.css), add them like this:
+				//
+				//	wp_enqueue_style( 'child-style',
+				//	get_stylesheet_directory_uri() . '/style.css',
+				//	array( $parent_style ),
+				//	wp_get_theme()->get('Version')
+				//  );
+			}
+			add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+
+		Note that there's no ?> (a php close tag) at the end of the file.
+
+Install plugins. My standard set is:
+
+AddToAny Share Buttons		Facebook, twitter, etc. share butons on
+							specified pages
+Akismet						Ships with wordpress --- comment spam removal
+Beaver Builder Plugin 		(Standard) Page-builder application
+PrettyPress					lets you see the page as you work
+Raw HTML Pro				put raw html into page content: [raw] ... [/raw]
+TinyMCEAdvanced				a more up-to-date version of the default visual
+							editor
+Wordpress Database Reset	reset database to initial state (use with caution!)
+WP Add Custom CSS			Add custom CSS to page or whole site (see also
+							JP Custom CSS)
+Google Analytics			Add google-analytics code to the end of every page
+Yoast SEO					Adds search-engine-optimization analysis. But see
+								https://github.com/senlin/so-clean-up-wp-seo
+Woo commerce				Everything you need to build a catalog
+							(https://woocommerce.com/)
+Foo events					Adds event ticketing to woocommerce
+Backup Buddy				Backup utility when you can't do it manually or 
+							need to backup remote install without shell access.
+
+Short Codes (https://codex.wordpress.org/Shortcode)
+
+	Only in page or post content panel (not in sidebar widgets)
+
+	[audio]
+	[caption]
+	[embed]
+	[gallery]
+	[playlist]
+	[video]
+
+	To put the literal text in your document [[gallery]]
+	Some shortcodes have start/end tags: [raw]...[/raw]

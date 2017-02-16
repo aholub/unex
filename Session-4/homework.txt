@@ -1,0 +1,24 @@
+1. Install WordPress on your system using the database names (and database-user
+	names) in notes.txt.
+
+2. Create a child theme
+
+3. Implement as much myself-as-web-developer web site as you can. Base it
+	on your child theme. Your site should have, at mimimum:
+
+		A landing page
+
+		A gallery page showing a gallery of your work.
+		Each gallery section should show the front page of the site, a
+		short description, and a link to the site. Also, clicking 
+		on the image should also get you to the site. Just use a few real web
+		sites for this section---no need to create additional sites.
+
+		A blog with one "article" in it
+
+		An about-me section that includes contact information.
+
+4. Just before handing in the homework, you must backup your Wordpress database
+	to a file called backupdb.zip . Put the file in your docroot for the site
+	(not usually a good idea, but I need to be able to find it!), and check
+	it in with the rest of the site.
