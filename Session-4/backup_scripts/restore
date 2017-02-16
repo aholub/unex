@@ -1,0 +1,17 @@
+#!/bin/bash
+# Restore to the previous commit (including the database)
+#
+. ./backup_settings
+
+echo "restoring  $website: $(date)" >> $backupLog
+
+set -x
+
+# Discard all uncommitted changes, putting the repo
+# in the condition it was in at the last commit.
+git reset --hard
+
+git pull
+bunzip2 -c $backupFile | mysql -h $db_host -u db_user -p$db_pass $db
+
+set +x

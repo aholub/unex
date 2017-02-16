@@ -1,0 +1,27 @@
+#!/bin/bash
+# backup the current site to the repo, along with the database
+# usage:
+#     backup [optional commit message]
+
+. ./backup_settings
+
+echo "backing up $website: $(date)" >> $backupLog
+
+# If a commit message is specified on the script command line, use it
+# instead of the default
+
+if (( $# > 0 )) ; then
+	commitMessage="$@"
+fi
+
+echo "$commitMessage"
+
+mkdir -p db_backup
+
+set -x
+mysqldump --add-drop-table -h $db_host -u $db_user -p$db_pass $db | bzip2 -c > $backupFile 
+git add .
+git commit -m "$commitMessage"
+
+git push
+set +x
