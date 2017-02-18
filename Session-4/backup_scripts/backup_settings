@@ -1,19 +1,16 @@
-# db="test_wp"
-# website="test.com"
-
-db="wp_aholub"						# database to back up
-website="holub.com"					# web site that I'm backing up
+db="wordpress_db"					# database to back up
+website="myWebSite.com"				# web site that I'm backing up
 
 backupLog="$HOME/backup.log"		# log file
 commitMessage="Regular backup"		# default commit message
 backupFile="db_backup/backup.bz2"	# name of the database backup file
-remoteHost="dc2-mysql-05.kattare.com" # database host name on ISP server
+remoteHost="mysql-01.myisp.com" 	# database host name on ISP server
 
 db_host="localhost"					# local database host name
 db_user="myDatabaseUserName"		# database-access username
 db_pass="myDatabasePassword"		# database-access password
 
-# if the localhost is tefunt, then this script is
+# if the hostname is tefunt, then this script is
 # running on the ISP computer, so use the real
 # database instead of the one at localhost
 
