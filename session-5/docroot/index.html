@@ -1,0 +1,64 @@
+<script>
+
+var current = 50;
+
+window.onload = function () {
+	document.getElementById("currentValue").innerHTML = String(current);
+	document.getElementById("myProgressBar").value = current;
+	document.getElementById("myMeter").value = current;
+}
+
+function change( amount ) {
+
+	var bar   = document.getElementById("myProgressBar");
+	var meter = document.getElementById("myMeter");
+
+	current 	+= amount ;
+	bar.value   =  current;
+	meter.value =  current;
+
+	document.getElementById("currentValue").innerHTML = String(current);
+}
+
+var up   = function () { change( 5); }
+var down = function () { change(-5); }
+
+function sleep(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time);
+    });
+}
+
+</script>
+<!-- ====================================================================== -->
+<style>
+.current-value {
+	font-weight:bold;
+	font-size: 20pt
+}
+</style>
+<!-- ====================================================================== -->
+Current value: <span class="current-value" id="currentValue"> 50 </span>
+
+<form   id="myform"
+		action="/echo.php"
+		method="post">
+
+	<input type="hidden" name="myValue" value="50"></input>
+
+	<p>
+	<progress id="myProgressBar" value="50" max="100"></progress>
+
+	<p>
+	<meter id="myMeter"
+		min="20" max="80"
+		value="50"
+		low="40" high="60" optimum="50">
+	</meter>
+
+	<p>
+	<button type="button" onclick="down();"> - </button> <!-- type defaluts to submit in Chrome -->
+	<button type="button" onclick="up()">    + </button>
+
+	<button> Submit </button>
+</form>

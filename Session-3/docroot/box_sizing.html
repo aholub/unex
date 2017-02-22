@@ -1,0 +1,31 @@
+<style>
+.line {
+    width: 400px;
+}
+
+.divBorderBox,
+.divContentBox {
+    height: 200px;
+    border: 20px solid blue;
+}
+
+.divBorderBox {
+    box-sizing: border-box;
+}
+
+.divContentBox {
+    box-sizing: content-box;
+}
+</style>
+
+<br>
+<br>
+<br>
+<br>
+<div class="divContentBox line">content-box</div>
+<br>
+<br>
+<div class="line" style="height: 4px; border:1px solid red" >
+<br>
+<br>
+<div class="divBorderBox line">border-box</div>

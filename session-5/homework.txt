@@ -1,0 +1,13 @@
+Create an array of objects that represent an order (customer info and line items).
+
+Using Javascript, generate a purchase page that lists all the items in that order,
+shows the total with 10% tax and $5.00 shipping added.
+Also, display the customer shipping information.
+
+Each line item should have a 'delete' button next to it. If it's clicked
+indicate that the item is deleted visually (print it in gray, for example, or
+remove it altogether from the screen) and don't include that item in the total.
+
+At the bottom of the page, collect the credit-card number and expiration date
+(use the <date> element) and submit the order to the server. Don't worry, for now,
+about telling the server about the deleted items.

@@ -1,0 +1,153 @@
+This document is a very terse reference to the core JavaScript syntax.
+If you know how to program, it will be helpful. If not, you should 
+go through one of the JavaScript tutorials:
+
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript
+	https://www.w3schools.com/js
+
+Interactive environments to try things out live:
+
+	http://plnkr.co
+	https://jsfiddle.net/
+
+----------------------------------------------------------------------
+JavaScript Syntax Summary
+----------------------------------------------------------------------
+'use strict';
+
+console.log("message");
+alert("message")
+
+/* comment */
+{ block }
+
+Variable declaration:
+
+	x = "string"		global (even if declared in function)
+	var   x = val;		enclosing-function scope
+	let   x = val;		enclosing-block scope
+	const PI = 3.14;	enclosing-block scope, constant value.
+
+Control Flow
+
+	if( a == b ) {		(false: false, undefined null 0 NaN "")
+	}
+	else {
+	}
+
+	while ( a < b ) {
+	}
+
+	for ( var i; i < b; ++i  ) {}
+	for ( variable in object ) {}			// iterates over property names
+	for ( variable of iterableObject ) {}	// iterates over values Array Map Set
+
+	do {...} while( condition )
+
+	label:
+	while( ... ) {
+		break;				( or continue )
+		while( ... ) {
+			break label:
+		}
+	}
+
+	switch ( name ) {
+	case 'fred':
+		statement();
+		break;
+	case 'wilma':
+		statement();
+		/* fall through */
+	default:
+		//...
+	}
+
+	try {
+		throw 'some object'
+	}
+	catch (e) {
+	}
+	finally {
+	}
+
+Variable "hosting" can declare variable after use!
+
+Literals:
+	'oak' in treesArray;
+
+	123, 012, 0xabcd, 1.23E10	  	(dec/octal/hex/float)
+	true false null
+	/ab+c/							(regex)
+	\- \b\f\n\r\t\v\'\"\\
+	\xUU
+	\uXXXX
+	\u{12345}
+	'string lit' or "double quotes"
+
+Built-in Types
+	String( num )
+	Boolean( string )
+	Number ( string )
+	Function('5 + 2')
+
+	Date, Math, Array, Error
+
+	Regular expression methods are in String (search, replace) and
+	in RegExp /e/.exec("search this string") 
+
+Essential Built-in functions
+	parseInt()
+	parseFloat()
+	eval()
+	decodeURI()
+	decodeURIComponenet()
+	encodeURI()
+	encodeURIComponenet()
+
+
+Arrays
+	a = ['first', 'second']
+
+Associative arrays & basic objects:
+	obj = {'a':'the a'', b:'the b' }
+	obj['a']
+	obj['a'+1]
+	obj[0]
+	obj.a
+
+Operators from high to low precedence:
+	member					. []
+	call / create instance	() new
+	negation/increment		! ~ - + ++ -- typeof void delete
+	multiply/divide			* / %
+	addition/subtraction	+ -
+	bitwise shift			<< >> >>>
+	relational				< <= > >= in instanceof
+	equality				== != === !==
+	bitwise-and				&
+	bitwise-xor				^
+	bitwise-or				|
+	logical-and				&&
+	logical-or				||
+	conditional				?:
+	assignment				= += -= *= /= %= <<= >>= >>>= &= ^= |=
+	comma					,
+
+	condition ? v1 : v2
+	x**2 					(exponentiation)
+	>>> 					(unsigned shift (zeros on left)
+	=== 					(equal and of same type)
+	!==
+	string + string			(concatenation)
+
+
+Advanced topics:
+
+Objects
+Arrow functions
+Rest parameters
+Error objects
+Promises/async/await
+XHR (XMLHttpRequest)
+Closures
