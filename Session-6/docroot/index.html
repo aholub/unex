@@ -1,0 +1,33 @@
+<script>
+	'use strict';
+
+	window.onload = function() {
+		getMyOrder();
+	}
+
+	function get( url ) {
+		retrun new Promise( function(resolve,reject) {
+			var req = new XMLHttpRequest();
+			req.open( "GET", url );
+
+			req.onload = function() {
+				resolve( req.response );
+			}
+			req.onerror = function () {
+				reject( Error("What went wrong") );
+			}
+			req.send();
+		});
+	}
+
+	function getMyOrder() {
+
+		get( "http://..." ).then ( 
+			function(response){ console.log( /* handle the JSON */ ) },
+			function(error   ){ console.log( "Failed " + error.message ) }
+		);
+	}
+</script>
+
+<h2>XHR Example</h2>
+

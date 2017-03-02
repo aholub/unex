@@ -1,0 +1,46 @@
+<script>
+	'use strict';
+
+var thingsToDo = [
+	new Runnable( "Say hello",   function(){ alert("hello"); } ),
+	new Runnable( "Say goodbye", function(){ alert("goodbye"); } )
+];
+
+function Runnable ( nameVar, operationVar ) {
+	this.name = nameVar;
+	this.operation = operationVar;
+}
+
+var currentThing = 0;
+
+function displayCurrentThing() {
+	document.getElementById("do-what").innerHTML =
+		thingsToDo[currentThing].name;
+}
+
+function up() {
+	if( ++currentThing >= thingsToDo.length )
+		currentThing = 0;
+	displayCurrentThing();
+}
+function down() {
+	if( --currentThing < 0 )
+		currentThing = thingsToDo.length - 1;
+	displayCurrentThing();
+}
+function execute() {
+	thingsToDo[currentThing].operation();
+}
+
+window.onload = function () {
+	displayCurrentThing();
+}
+
+</script>
+
+<form>
+	<h1 id = "do-what"> ? </h1>
+	<button type="button" onClick="down();">-</button>
+	<button type="button" onClick="up();">+</button>
+	<button type="button" onClick="execute();">Execute</button>
+</form>

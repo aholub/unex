@@ -1,0 +1,30 @@
+<script>
+var Order = {
+	// "customer": "Allen",
+	"description": "My cool product",
+	"amount" : 0.0,
+	"amDisabled" : false
+	"disable" : function(){ this.amDisabled = true }
+}
+Order.customer = "Allen"
+
+function Order ( customerVal, descriptionVal, amountVal ) {
+	this.customer = customerVal;
+	this.description = descriptionVal;
+	this.amount = amountVal;
+	this.disable = function() { this.amount = -1; }
+}
+
+var myOrder  = new Order( "Allen", "my cool thing", 10.0 );
+var myOrder2 = new Order( "Fred", "my cool thing", 10.0 );
+
+myOrder.disable();
+
+
+Order myOrder = AllOrders[0];
+myOrder.disableYourself();
+
+myOrder.disable();
+
+
+</script>

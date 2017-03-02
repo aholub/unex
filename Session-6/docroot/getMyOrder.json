@@ -1,0 +1,14 @@
+{
+	"customer" : { 
+		"name":"Allen",
+		"address":"1234 Anystreet, Anytown";
+	},
+	"lineItems" = [ 
+		{ "description": "my cool item" },
+		  "price" : 1.23
+		},
+		{ "description": "my second cool item" },
+		  "price" : 4.56
+		}
+	]
+}
