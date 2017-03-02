@@ -1,0 +1,100 @@
+<script>
+"use strict";
+
+function throwsEvalError () {
+	// Default errors are EvalError InternalError RangeError
+	// ReferenceError SyntaxError TypeError URIError
+
+	throw new EvalError("Eval Failed");
+}
+
+var thingsToDo = [
+	{ "name": "Say hello"	, 'op': function(){ window.alert("hello"); } },
+	{ "name": "Say goodbye"	, 'op': function(){ window.alert("g'bye"); } },
+	{ "name": "Simple Error", 'op': function(){
+		try { 
+			// do some stuff
+			// if( there_was_some_error )
+			throw new Error("Aagh");
+		}
+		catch(e) {
+			window.alert( e.name + ': ' + e.message );
+		}
+	}},
+	{ "name": "Specific Error", 'op': function(){
+		try { 
+			throwsEvalError();
+		}
+		catch(e) {
+			window.alert( e.name + ': ' + e.message 	+ "\n" +
+						  "file: "		+ e.fileName    + "\n" +
+						  "line: " 		+ e.lineNumber  + "\n" +
+						  "type: "		+ typeof(e) 
+			);
+			if( e instanceof EvalError ) {
+				window.alert("It was an EvalError");
+			}
+		}
+	}},
+	{ "name": "Custom Error", 'op': function(){
+
+		function CustomError(message) {
+			this.name = 'Custom Error';
+			this.message = message || 'Default Message';
+			this.stack   = (new Error()).stack;
+		}
+		CustomError.prototype 			  = Object.create(Error.prototype);
+		CustomError.prototype.constructor = CustomError;
+
+		try { 
+			// do some stuff
+			// if( there_was_some_error )
+			throw new CustomError("AAAAAGH!!!!!");
+		}
+		catch(e) {
+			alert(	e.name + ': '	+ e.message 	+ "\n" +
+					"file: "		+ e.fileName    + "\n" +
+					"line: " 		+ e.lineNumber  + "\n" +
+					"type: "		+ typeof(e) 
+			);
+			if( e instanceof CustomError ) {
+				alert("It was a CustomError ");
+			}
+			alert(e.stack);
+		}
+	}}
+];
+
+var currentThing = 0;
+function execute() {
+	thingsToDo[currentThing].op();
+}
+
+function up() {
+	if( ++currentThing >= thingsToDo.length  )
+		currentThing = 0;
+	displayCurrentThing();
+}
+function down() {
+	if( --currentThing < 0 )
+		currentThing = thingsToDo.length - 1 ;
+	displayCurrentThing();
+}
+function displayCurrentThing() {
+	document.getElementById("do-what").innerHTML =
+		thingsToDo[currentThing].name;
+}
+
+window.onload = function () {
+	displayCurrentThing();
+}
+
+</script>
+
+<form>
+	<h1 id="do-what">?</h1>
+
+	<button type="button" onclick="down();">-</button>
+	<button type="button" onclick="up();">+</button>
+	<button type="button" onclick="execute();">Execute</button>
+</form>

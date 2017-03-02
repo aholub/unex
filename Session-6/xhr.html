@@ -1,0 +1,143 @@
+<!--
+	There's a good article on Promises at
+	https://developers.google.com/web/fundamentals/getting-started/primers/promises
+
+	Promises can be:
+
+	fulfilled	the action succeeded
+	rejected	the action failed
+	pending		the action hasn't run yet
+	settled		the action has already run
+
+	They work on all new browsers. For older browsers (e.g. IE<9),
+	use this "polyfill:" https://github.com/stefanpenner/es6-promise#readme
+
+	Here are full docs for XMLHttpRequest
+
+	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
+	https://dvcs.w3.org/hg/xhr/raw-file/tip/Overview.html
+-->
+
+<script>
+
+/* create a promise */
+
+var myPromise = new Promise( function(resolve, reject) {
+
+  // do a thing, possibly async, then…
+
+  if (/* everything turned out fine */) {
+    resolve("Stuff worked!");
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+
+/* use it */
+
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+
+
+/* XHR request that creates a promise */
+
+function get(url) {
+  // Return a new promise.
+  return new Promise( function(resolve, reject) {
+    var req = new XMLHttpRequest();    // Setup to get JSON (or whatever) from a URL
+    req.open('GET', url);
+
+	// This is less convenient, but works in every browser:
+	//
+	// These are defined in XMLHttpRequest:
+	//	  const unsigned short UNSENT = 0;
+	//	  const unsigned short OPENED = 1;
+	//	  const unsigned short HEADERS_RECEIVED = 2;
+	//	  const unsigned short LOADING = 3;
+	//	  const unsigned short DONE = 4;
+	//
+	// xhr.onreadystatechange = function () {
+    //		if (xhr.readyState == DONE && xhr.status == 200) {
+	//        alert(xhr.responseText);
+	//     }
+	//	}
+	//
+	// The following event handlers should be avilable:
+	//		onloadstart, onprogress, onabort, onerror, onload, ontimeout, onloadend
+	//
+
+    req.onload = function() {			// even on 404 errors (200==real success)
+
+      if (req.status == 200) {
+        resolve(req.response);	 		// Resolve the promise with the response text
+      }
+      else {
+        reject( Error(req.statusText) );	// Reject with the status text which will hopefully be a meaningful error
+      }
+    };
+
+    req.onerror = function() {			 // Network (not HTTP) errors
+      reject( Error("Network Error") );
+    };
+
+    // Make the request
+    req.send();
+  });
+}
+
+function post( url, json ) {
+  return new Promise( function(resolve, reject) {
+
+    var req = new XMLHttpRequest();    // Setup to get JSON (or whatever) from a URL
+	req.setRequestHeader("Content-Type", "application/json" );
+    req.open('POST', url);
+
+    req.onload = function() {			// even on 404 errors (200==real success)
+
+      if (req.status == 200) {
+        resolve( req.response ); 		// Resolve the promise with the response text
+      }
+      else {
+        reject( Error(req.statusText) );	// Reject with the status text which will hopefully be a meaningful error
+      }
+    };
+
+    req.onerror = function() {			 // Network (not HTTP) errors
+      reject( Error("Network Error") );
+    };
+
+    // Make the request. If you have a local JSON object:
+	//
+	// json = JSON.stringify( {name:"John Rambo", time:"2pm"} );
+
+    req.send( json );
+  });
+}
+/* 
+   See JSON.parse( someJSONString )
+   and JSON.parse('{"p": 5}',
+			(key, value) =>								// same as function(key,value){ ... }
+			  typeof value === 'number'					// when you use => last expression is the return value
+				? value * 2 // return value * 2 for numbers
+				: value     // return everything else unchanged
+		}
+);
+*/
+
+/* use it */
+
+get('story.json').then(
+	function(response) {
+	  console.log("Success!", response);
+	},
+	function(error) {
+	  console.error("Failed!", error);
+	}
+);
+
+</script>
