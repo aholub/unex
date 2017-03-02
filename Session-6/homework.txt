@@ -1,0 +1,45 @@
+1) Get delete working on your existing checkout page. If you're currently
+computing the total by extracting information from the screen, modify
+you code so that you're using the underlying JavaScript JSON data instead.
+If you delete an item, modify the underlying JSON data to mark the item
+as deleted so that you can compute an accurate total.
+
+2) Replace the JSON-data representation of the order with a set of objects,
+which should use the JSON data, or a subset of it, to initialize
+themselves. That is, pass an appropriate amount of JSON data to the
+object constructor. What I'm expecting is an Order object, that
+contains a Customer object and an array of LineItem objects. A LineItem
+contains a quantity and a Product. A Product contains a description, etc.
+These objects should contain appropriate methods. For example,
+you should be able to mark a line item as deleted with something like
+
+	currentLine.changeQuantity( 0 );
+
+You could compute the total in a loop that asks each line item to
+update a total. For example
+
+	for( ... )
+		total = currentLine.addQuantityToTotal( total );
+
+I do not want you to access the data components (the fields) of the
+object directly, use methods (function members of the object) to
+access data. In general, do not ask the object for the information you
+need to do the work, Instead, ask the object that has the information
+to do the work for you. (This is an object-oriented programming principle
+called "delegation".) This philosophy extends to UI generation. For example,
+You should create an onscreen representation of a line item inside a div
+with a specific ID like this:
+
+	myLineItem.insertRepresentationIntoDivWithID( "id-of-div" )
+
+The object that has the information should do the work.
+
+3) If you have not done so, use exceptions (try/catch/Error) to indicate
+errors in your constructor functions. Note that JSON.Parse will throw
+and exception if the JSON is malformed. Deal with that.
+
+4) Put the JSON representation of you order into a separate file on the
+server, then use an XHR (XMLHttpRequest) object to fetch the data when your
+page loads. 
+
+5) If you haven't done it in 3, modify your code to use a Promise.
