@@ -1,0 +1,9 @@
+JQuery documentation:
+	https://api.jquery.com/
+
+Bootstrap:
+	http://getbootstrap.com/
+
+Accessibility attributes ( aria- ):
+	https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
+

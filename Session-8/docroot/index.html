@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- you can download boostrap as well: http://getbootstrap.com/getting-started/ -->
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+		crossorigin="anonymous">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins). Can go at end of body if you
+	     don't use jquery in the head element 
+	-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<style>
+	body {
+	  padding-top: 50px;
+	}
+	.starter-template {
+	  padding: 40px 15px;
+	  text-align: center;
+	}
+	</style>
+
+	<script>
+		$( function() {
+			$("#myText").click( function() {
+				$("#myText").html("<b>hello world</b>");
+			});
+		});
+	</script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+	<div class="container">  <!-- Use container-fluid to span the full width -->
+
+		<div class="starter-template">
+			<h1>Bootstrap starter template</h1>
+			<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+
+			<span id="myText"> Text placeholder </span>
+		</div><!-- /.container -->
+
+
+<div class="row">
+  <div class="col-md-3 col-sm-6">.col-md-3 a</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 b</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 c</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 d</div>
+</div>	
+<div class="row">
+  <div class="col-md-3 col-sm-6">.col-md-3 e</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 f</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 g</div>
+  <div class="col-md-3 col-sm-6">.col-md-3 h</div>
+</div>	
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+			crossorigin="anonymous"></script>
+</body>

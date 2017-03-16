@@ -1,0 +1,28 @@
+Redo your checkout and resume pages in bootstrap,
+adding a navigation bar if you don't already have one.
+If you can do something in bootstrap (such as a drop-down), I want
+you to do it in bootstrap, not raw HTML.
+
+On the checkout page, you should have large box on the left that
+holds the line items and a "sidebar" on the right that holds the
+customer information and the total. Each line item should be 
+laid out using three columns: description, price, quantity.
+Use a drop-down to select the quantity (between 1 and 10)
+All of these should move around appropriately as the screen
+changes size.
+
+Ideally, I want this all done dynamically from data you load from
+the server. However, if you don't have that working, yet, then just
+create a static page where the line-item information, total, etc is all
+hard coded into the page. That is, for this assignment, I'm more interested
+in you using bootstrap correctly than I am in you getting the
+JavaScript right. I'd suggest doing the whole thing without (much)
+JavaScript, first, then redo the assignment to lay out automatically from
+fetched data. If you do that, put a v1 and v2
+subdirectories into your docroot so that you can hand in both versions.
+
+You may layout your resume as you wish, but again, it should
+work correctly when resized to cell-phone sizes.
+
+Do not use any @media tags.
+Use Bootstrap to do the resizing as required.
