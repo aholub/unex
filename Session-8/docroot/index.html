@@ -33,10 +33,12 @@
 	</style>
 
 	<script>
+	   function changeText() {
+				$(".myText").text("<b>hello world</b>");
+			}
+
 		$( function() {
-			$("#myText").click( function() {
-				$("#myText").html("<b>hello world</b>");
-			});
+			$(".myText").click( changeText );
 		});
 	</script>
 </head>
@@ -56,6 +58,11 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
+				  <ul>
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				  </ul>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -68,7 +75,9 @@
 			<h1>Bootstrap starter template</h1>
 			<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
 
-			<span id="myText"> Text placeholder </span>
+			<span class="myText"> Text placeholder </span>
+			<span class="myText"> Another Text placeholder </span>
+
 		</div><!-- /.container -->
 
 

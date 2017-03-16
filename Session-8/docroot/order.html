@@ -1,0 +1,23 @@
+<head>
+	<script>
+		alert("a");
+		document.onload = function(){ alert("doesn't execute in chrome!"); }
+		alert("b");
+		window.onload = function(){ 
+			alert("g");
+			var req = new XMLHttpRequest();
+			req.open("GET", "http://localhost/order.html");
+			req.onload  = function() { alert("h"); }
+			req.onerror = function() { alert("Error loadig order.html"); }
+			req.send();
+		};
+		alert("c");
+	</script>
+</head>
+<body>
+	EEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+	<script> alert("d"); </script>
+
+	FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+</body>
