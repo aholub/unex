@@ -1,0 +1,66 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="Spinner.js" ></script>
+
+<style>
+.ah-spinner-pointer span {
+	color: #c12723;
+}
+</style>
+
+<script>
+$( function() {
+	// Create a spinner and insert it into the my-spinner div
+	//
+	new Spinner( "my-spinner", 
+				 "img/wheel_14-segment.svg",
+		         function( rotation ){
+					 $("#my-spinner-segment").text(
+						 String( Spinner.getSegment(rotation, 14, 1) )
+					 );
+				 }
+	);
+});
+</script>
+
+</head>
+<body>
+	<h1>Spinner</h1>
+
+	<!-- Create a spinner entirely in HTML. 
+	 |	 This div is identified as a spinner by the ag-spinner
+	 |	 class. There's no CSS for this class (though there could
+	 |	 be if you want to define styles for all spinners), and
+	 |	 you can add additional classes if you like.
+	 |	 The optional onComplete attribute specifies the *name*
+	 |	 (only) of the function to call when each spin finishes.
+	 |	 That function is passed a single argument holding the
+	 |	 spinner position at completion in degrees (clockwise
+	 |	 from 12 o'clock).
+	 |	 The image is sized to fit within this div (by width).
+	 |   If you put anything inside this div, it will be placed
+	 |   above the spinner.
+	 +-->
+	<script>
+	function spinner2Complete( rotation ){
+		$("#offset-in-degrees").text( String(rotation) );
+	}
+	</script>
+	<div class="ah-spinner"
+		 img="img/reverseCompassRose.png"
+		 style="width:200px; float:left; display:inline-block; border:1px solid red;"
+		 onComplete="spinner2Complete"
+	 >
+		 <center><h2 id="offset-in-degrees">0</h2></center>
+	</div>
+
+	<!-- A spinner is inserted into this div by explicit javascipt code.
+ 	 | 	The spinner is positioned at the bottom of the div, beneath any
+	 |	content it may already have. 
+	 +-->
+	<div id="my-spinner" 
+		 style="margin-left: 1em; width:200px; float:left; display:inline-block;">
+		<center><h2 id="my-spinner-segment">0</h2></center>
+	</div>
+
+</body>
+

@@ -1,0 +1,65 @@
+<!-- Modified from: http://jsfiddle.net/YNBxz/2/ -->
+<!-- Another version without javascript: http://jsfiddle.net/YNBxz/1/ -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+
+<style>
+#spinner-rotation {
+    -webkit-transition: -webkit-transform 3s cubic-bezier(.3,.2,.02,.99);
+    transition: transform 3s cubic-bezier(.3,.2,.02,.99);
+}
+</style>
+
+<script>
+
+function getRandomIntBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+window.onload = function() {
+	new Spinner( "my-spinner", 
+				 "http://upload.wikimedia.org/wikipedia/commons/7/7d/European_roulette_wheel.svg",
+				 "200px",
+		         function( rotation ){
+					console.log("Done. At " + String(rotation) );
+				 }
+	);
+};
+// targetDivId				id for div that holds the spinner (without the #)
+// imageURL					url of the image
+// diameter					height and width of the image
+// notifyOnSpinComplete		callback notified when spin completes. Argument
+//							is rotation angle of the spinner (0-359).
+
+function Spinner( targetDivId, imageURL, diameter, notifyOnSpinComplete ) {
+	Spinner.selector = 0;
+
+	var deg      = 0;
+	var myId     = ++Spinner.selector;
+
+	function spin() {
+		deg = getRandomIntBetween(0, 720);
+		var css = '-webkit-transform: rotate(' + deg + 'deg);';
+		this.removeAttribute('style');
+		this.setAttribute( 'style', css );
+	}
+
+	imgElement = $(targetDivId).createElement("img");
+	imgElement.width  = diameter;
+	imgElement.height = diameter;
+	imgElement.src    = imageURL;
+	imgElement.id     = myId;
+	imgElement.click( spin );
+	imgElement.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+		function(e) {
+			notifyOnSpinComplete( deg % 360 );
+		});
+
+	$(targetDivId).appendChild( imgElement );
+}
+
+</script>
+
+<div id="my-spinner">
+</div>

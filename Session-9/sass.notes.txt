@@ -1,0 +1,283 @@
+Sass (sass-lang.com)
+
+This is the key stuff. There are more details, however, described in the documentation:
+	http://sass-lang.com/documentation/file.SASS_REFERENCE.html
+
+Install:
+	If you have Ruby (all macs have Ruby):
+
+		gem install sass
+
+	If you're on Windows, install ruby first: 
+
+		http://rubyinstaller.org/
+
+To compile one file
+		sass input.ccss output.css
+
+To automatically compile the file input.scss every time you change it:
+		sass --watch input.scss:output.css
+
+To automatically compile all files in path/to/input every time any of
+them change:
+		sass --watch path/to/input:path/to/output
+
+Comments
+		// up to end of line
+		/* multi
+		*  line
+		*/
+
+Nesting
+
+	#mydiv p {
+		color: black;
+
+		.red {
+			color: #ff0000;
+		}
+	}
+
+Parents:
+
+	a {
+		text-decoration: none;
+
+		&:hover { text-decoration: underline; }
+	}
+
+	.main {
+		color: black;
+
+		&-sidebar {
+			color: gray;
+			border: 1 px solid black;
+			padding: 1em 1em 1em 1em;
+			float: right;
+		}
+	}
+
+Namespaces:
+
+	.ugly {
+		font: {					// Namespace for font-xxxx styles.
+			family: fantasy;
+			size: 30pt;
+		}
+	}
+
+Script.
+
+	test by running sass -i (use command line for I/O)
+
+	+ - * / %   and parentheses
+
+	p {
+	  font: 10px/8px;             // Plain CSS, no division
+	  $width: 1000px;
+	  width: $width/2;            // Uses a variable, does division
+	  width: round(1.5)/2;        // Uses a function, does division
+	  height: (500px/2);          // Uses parentheses, does division
+	  margin-left: 5px + 8px/2px; // Uses +, does division
+	  font: (italic bold 10px/8px); // In a list, parentheses don't count
+	}
+
+Variables.
+
+	$myRed: #ff1111; 
+	...
+	<span style="$red">Red text</span>
+
+	Scope is local selector unless you say
+
+	.foo {
+		$myRed: #ff1111 !global;
+	}
+
+	Can be used for class names too:
+
+		@prefix: allen;
+
+		#{prefix}-myStyle {
+		}
+
+	In a string:
+		"I ate #{1 + 10} apples"
+
+	to avoid math, use #{variable} instead of $variable
+
+	+ 	adds colors one byte at a time, concatentates strings
+		color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+
+
+DataTypes
+
+	numbers
+	strings
+	colors
+	booleans	and or not
+	nulls
+	lists (a b c d, e, f, g)
+	maps. Access using script:
+		http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions  
+		$myMap: (key1: value1, key2: value2)
+
+
+@import "foo.scss";
+@import "http://my-remote-site/foo.scss";
+@import "file1.scss", "file2.scss"
+
+	If a filename starts with _  (e.g. _myFileToInclude.scss), then
+	sass won't compiler it, however you can import it into a file that
+	*will* be compiled.
+
+	You can nest imports, and use them in @media rules.
+
+@media can be nested:
+
+	.sidebar {
+	  width: 300px;
+	  @media screen and (orientation: landscape) {
+		width: 500px;
+	  }
+	}
+
+Extension
+
+	.baseRule {
+		border: 1px black;
+		background-color: white;
+	}
+	.subRule {
+		@extend .baseRule	// all styles defined in baserule are used here, too
+		border-width 3px;
+	}
+
+	works with selectors, too:
+
+	a:hover {
+		text-decoration: underline;
+	}
+	.hoverlink {
+		@extend a:hover;
+	}
+
+
+	placeholders:
+		#context a%extreme {
+		  color: blue;
+		  font-weight: bold;
+		  font-size: 2em;
+		}
+
+		.notice {
+		  @extend %extreme;
+		}
+
+	becomes (placeholder not expanded):
+
+		#context a.notice {
+		  color: blue;
+		  font-weight: bold;
+		  font-size: 2em; }
+
+
+	Generally, you cannot extend a class defined outside a @block
+	inside a @media block.
+
+Control:
+
+	 if( <boolean>, trueValue, falseValue )
+
+	 p {
+	   @if 1 + 1 == 2 { border: 1px solid;  } // < > <= >= != == and or not
+	   @if 5 < 3      { border: 2px dotted; }
+	   @if null       { border: 3px double; } // null is false
+	 }
+
+	 @if ... {
+	 }
+	 @else if ... {
+	 }
+	 @else {
+	 }
+
+	 @for $i from 1 through 3 {
+		  .item-#{$i} { width: 2em * $i; } // creates .item-1,. .item-2, .item-3
+	 }
+
+	 @each $animal in puma, sea-slug, egret, salamander {
+		  .#{$animal}-icon {
+			  background-image: url('/images/#{$animal}.png');
+		  }
+		}
+
+
+	@each $animal, $color, $cursor in (puma, black, default),
+                                      (sea-slug, blue, pointer),
+                                      (egret, white, move) {
+	  .#{$animal}-icon {
+		background-image: url('/images/#{$animal}.png');
+		border: 2px solid $color;
+		cursor: $cursor;
+	  }
+	}
+
+
+	$i: 6;
+	@while $i > 0 {
+	  .item-#{$i} { width: 2em * $i; }
+	  $i: $i - 2;
+	}
+
+@mixin
+
+	In rules:
+		@mixin large-text {
+		  font: {
+			family: Arial;
+			size: 20px;
+			weight: bold;
+		  }
+		}
+
+		.title {
+			@include large-text
+		}
+
+	Or whole rules
+
+		@mixin wholeStyles {
+			a { color:blue; }
+		}
+		//...
+		@include wholeStyles
+
+	Or with arguments:
+
+		@mixin sexy-border($color, $width 1in) {   // use 1in if width arg not specified in call
+		  border: {
+			color: $color;
+			width: $width;
+			style: dashed;
+		  }
+		}
+		p { @include sexy-border(blue, 1in); }
+
+Functions
+
+	$grid-width: 40px;
+	$gutter-width: 10px;
+
+	@function grid-width($n) {
+		@return $n * $grid-width + ($n - 1) * $gutter-width;
+	}
+
+	#sidebar { width: grid-width(5); }
+
+
+
+
+Source maps (generated automatically when watching or with --sourcemap)
+Instructions here:
+	https://robots.thoughtbot.com/sass-source-maps-chrome-magic
