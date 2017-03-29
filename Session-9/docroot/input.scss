@@ -1,4 +1,64 @@
+
 $redish: #ff0a0a;
+$dark:   #f1f1f1;
+
+/* multi
+line
+comment
+*/
+
+$margin: 1in;
+
+.container {
+	margin: $margin $margin $margin $margin;
+	margin: $margin/2 $margin/2 $margin/2 $margin/2;
+	&:hover {
+		background-color: white;
+	}
+
+	@media screen and (orientation:
+	landscape) {
+		width: 10in;
+	}
+
+	p {
+		color: $redish;
+		background-color: $dark;
+		width: 5in;
+	}
+}
+
+.special-container {
+	@extend .container;
+	width: 1in;
+}
+
+$myVar: 1;
 p {
-	color: $redish
+	@if $myVar == 0  {
+		width: 10in;
+	}
+	@else if $myVar == 0 {
+		width: 10in;
+	}
+	@else {
+	}
+}
+
+@mixin large-text {
+	font: 100pt;
+
+	a { color: red; }
+}
+
+$grid-width: 40px;
+$gutter-width: 10px;
+@function grid-width($n) {
+	@return $n * $grid-width + ($n + 1);
+}
+
+.sidebar { width: grid-width(5); }
+
+.title {
+	@include large-text
 }

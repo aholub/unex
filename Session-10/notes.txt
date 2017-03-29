@@ -1,0 +1,103 @@
+Bundling: I'll demonstrate
+
+	Browserify (http://browserify.org/)
+		npm install -g browserify
+
+	Uglify (https://www.npmjs.com/package/uglify-js-harmony)
+		npm install -g uglify-js-harmony
+
+	"npm" the "Node package manager" You'll have to install node
+	to use it. If you're on the mac,
+
+		- first install homebrew (https://brew.sh)
+		- then issue a
+			brew install node
+
+	on Windows, get the installer fromn
+		https://nodejs.org/en/download/
+
+	I've put a small shell script that I use to bundle things up
+	into the class repo. You'll have to modify that for your
+	own use, however.
+
+LIGHTSAIL:
+
+Lightsail is by far the easiest portal into Amazon's EC2 system:
+
+	https://amazonlightsail.com/
+
+Set up an account
+
+
+Here's how you can get your wordpress password if you set up a Wordpress
+instance.
+	1. Paste the IP address of your blog into your browser.
+	2. Choose Manage in the lower right-hand corner.
+	3. Choose Login to log in to the admin console.
+	4. Use the default user name (user).
+
+	To get the password, you'll need to connect to your instance.
+	1. Go back to Lightsail and choose Connect using SSH to connect to
+		your WordPress instance.
+	2. Type the following:
+		cat bitnami_application_password
+
+To hook up to a domain name:
+	1. register the domain with a registrar. I like gandi.net
+	2. In lightsail main page:
+			pick "Create other resources" at the top
+			pick DNS Zone
+			enter your domain
+			note the name servers
+			Go back to your registrar and enter those name servers.
+
+	3. To add mail via Google, you'll need to set up "G Suite" account
+		(gsuite.google.com). I'll show you in class. Part of that process
+		involves adding MX records to your domain. Do that from the
+		lightsail window we were just on by clicking "add another".
+
+For file loading, just pulling from git is easiest, but you can also use an
+FTP client like CyberDuck (https://cyberduck.io/).
+Get your "public key" file from your account page. Then
+
+	- When you "Open Connection", Choose SFTP.
+	- Server is the Public IP for your instance (port will be 22)
+	- Username is indicated on the "Connect" tab of manage instance
+	  Choose the SSH Private Key for the instance (download
+	  the Default Key from the accounts page if you don't already
+	  have one).
+
+	Bitnami has documentation here to connect to phpmyadmin securely:
+	https://docs.bitnami.com/aws/apps/magento/#how-to-access-phpmyadmin
+
+For access the instance's command line, you can SSH into your
+instance from the lightsail dashboard, but you can also use
+external tools. There are instructions for using PuTTY
+(http://www.putty.org/) on the Lightsail site.
+
+to use the mac ssh client,
+	- download the private key file from lightsail
+	- copy that key to your ~/.ssh directory (if one doesn't exist, create it).
+	  If you rename the file to id_rsa, you're done. access your instance
+	  with:
+
+		/usr/bin/ssh bitnami@34.197.120.127
+
+	  where the IP address is the one for your instance and the login name
+	  (bitnami) is the one that lightsail gave to you.
+
+	- If you already have a ~/.ssh directory with an id_rsa file in it, then
+	  copy the .pem file into your ~/.ssh directory, change it's access
+	  permissions to make it very restricted (or ssh will balk);
+
+	  	chmod 600 myfile.pem
+
+	  then access the remote system with
+
+	  	/usr/bin/ssh -i ~/.ssh/lightsail.pem bitnami@34.197.120.127
+
+The other alternative if you're particularly paranoid is to use the
+ssh-keygen utility to create a public-key, private-key pair, upload
+the public key to Amazon, and then proceed as above. ssh-keygen will
+put the key pair into ~/.ssh for you.
+

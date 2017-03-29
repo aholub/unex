@@ -1,5 +1,29 @@
-p {
-  color: #ff1111;
-  }
+/* multi
+line
+comment
+*/
+.container, .special-container {
+  margin: 1in 1in 1in 1in;
+  margin: 0.5in 0.5in 0.5in 0.5in; }
+  .container:hover, .special-container:hover {
+    background-color: white; }
+  @media screen and (orientation: landscape) {
+    .container, .special-container {
+      width: 10in; } }
+  .container p, .special-container p {
+    color: #ff0a0a;
+    background-color: #f1f1f1;
+    width: 5in; }
+
+.special-container {
+  width: 1in; }
+
+.sidebar {
+  width: 206px; }
+
+.title {
+  font: 100pt; }
+  .title a {
+    color: red; }
 
 /*# sourceMappingURL=output.css.map */

@@ -86,12 +86,13 @@ function Spinner( targetDiv,	// If a string, is the  of the div that holds the
 	if( !(targetDiv instanceof jQuery) )
 		targetDiv = $("#" + targetDiv);
 
-	var pointerDiv = $('<div />', {
+	var n = 0;
+	var pointerDiv = $('<div></div>', {
 		"class" : "ah-spinner-pointer",
 		"css" : { "text-align" : "center" }
 	}).appendTo( targetDiv );
 
-	$('<span > &#9660; </span>').appendTo( pointerDiv );
+	$('<span> &#9660; </span>').appendTo( pointerDiv );
 
 	// There is a second argument and it's the callback
 	// rather than an image
